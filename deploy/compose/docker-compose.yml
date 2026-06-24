@@ -113,6 +113,7 @@ services:
       context: ./services/runtime-api
       dockerfile: Dockerfile
     image: 'vexaai/runtime-api:${IMAGE_TAG}'
+    user: "root"
     group_add:
       - '${DOCKER_GID:-998}'
     ports:
