@@ -303,10 +303,13 @@ services:
     networks:
       - vexa
     restart: unless-stopped
-  bot-puller:
+  vexa-bot-builder:
+    build:
+      context: ./services/vexa-bot
+      dockerfile: Dockerfile
     image: 'vexaai/vexa-bot:latest'
-    command: ["echo", "Bot image pulled!"]
-    restart: "no"
+    command: ["sleep", "infinity"]
+    restart: unless-stopped
 volumes:
   redis-data: null
   postgres-data: null
