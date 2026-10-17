@@ -10,7 +10,7 @@ COPY packages/transcript-rendering/dist/ /transcript-rendering/dist/
 # Install dependencies (package.json only — no lockfile, to avoid path mismatch after sed)
 COPY services/dashboard/package.json ./
 RUN sed -i 's|"@vexaai/transcript-rendering": "file:../../packages/transcript-rendering"|"@vexaai/transcript-rendering": "file:/transcript-rendering"|' package.json && \
-    npm install --ignore-scripts --verbose
+    npm install --ignore-scripts --legacy-peer-deps
 # Ensure transcript-rendering is physically copied (not symlinked)
 RUN rm -rf node_modules/@vexaai/transcript-rendering && \
     cp -r /transcript-rendering node_modules/@vexaai/transcript-rendering
